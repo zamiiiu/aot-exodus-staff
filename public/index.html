@@ -36,6 +36,25 @@ label input,label select{text-transform:none;letter-spacing:0}
 .s-Hecha{color:var(--ac2)}.s-Cancelada{color:var(--mu);text-decoration:line-through}.s-Programada{color:var(--wn)}
 .stats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}.stats div{flex:1;min-width:110px;background:var(--card);border:1px solid var(--bd);border-top:2px solid var(--ac);border-radius:6px;padding:8px 10px;font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:var(--mu)}.stats b{font-size:24px;display:block;color:var(--gd);font-family:Cinzel,Georgia,serif}
 .sc{overflow-x:auto}
+.pdc{background:#120e0d;border:1px solid var(--bd);border-left:5px solid var(--c);border-radius:8px;padding:12px 14px;margin-bottom:10px}
+.ph{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.rb{font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 9px;border-radius:99px}
+.tm{font-weight:700;font-variant-numeric:tabular-nums;color:var(--gd)}.tm small{color:var(--mu);font-weight:400}
+.ac{margin-left:auto;display:flex;gap:6px}
+.pdc h3{margin:8px 0 4px;font:700 17px Cinzel,Georgia,serif;letter-spacing:.5px}
+.pm{display:flex;gap:16px;flex-wrap:wrap;color:var(--mu);font-size:13px}.pm b{color:var(--tx)}
+.pdsc{margin:8px 0 0;color:#d6cbbb;white-space:pre-wrap}
+.pf{display:grid;grid-template-columns:130px 1fr auto;gap:8px;align-items:end;margin-top:10px;padding-top:10px;border-top:1px dashed var(--bd)}
+.pf textarea{resize:vertical}
+@media(max-width:560px){.pf{grid-template-columns:1fr}}
+.hrs{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:6px;margin-bottom:10px}
+.hc{border:1px solid var(--bd);border-radius:5px;padding:5px 7px;font-size:12px;background:#120e0d;color:var(--mu);cursor:pointer;line-height:1.3}.hc b{display:block;color:var(--tx);font-variant-numeric:tabular-nums;font-size:14px}.hc span{color:inherit;opacity:.8}.hc.o{border-color:transparent;cursor:default}.hc.o b{color:inherit}
+.dn{display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;margin-bottom:8px}.dn b{min-width:200px;text-align:center;text-transform:capitalize;font-family:Cinzel,Georgia,serif}
+.lg{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;font-size:12px;color:var(--mu);margin-bottom:8px}.lg i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.tlw{max-height:540px;overflow-y:auto;border:1px solid var(--bd);border-radius:6px;background:#120e0d}
+.tl{position:relative;height:1152px}
+.tl .g{position:absolute;left:0;right:0;border-top:1px solid var(--bd)}.tl .g span{position:absolute;left:6px;top:-9px;font-size:11px;color:var(--mu);background:#120e0d;padding:0 3px;font-variant-numeric:tabular-nums}
+.blk{position:absolute;left:58px;right:6px;border-radius:5px;padding:3px 8px;font-size:12px;line-height:1.3;overflow:hidden;border-left:5px solid rgba(0,0,0,.35);box-shadow:0 1px 4px rgba(0,0,0,.5)}
 .cal{display:grid;grid-template-columns:repeat(7,minmax(72px,1fr));gap:4px;min-width:520px}.cal .h{font-size:12px;color:var(--gd);text-align:center}.cal .d{min-height:78px;background:#120e0d;border:1px solid var(--bd);border-radius:4px;padding:4px;cursor:pointer;font-size:11px;overflow:hidden}.cal .d.sel{outline:2px solid var(--gd)}.cal .d.td>b{color:#ff8a80}.cal .d i{display:block;font-style:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px;color:var(--mu)}
 #login{position:fixed;inset:0;z-index:10;display:flex;align-items:center;justify-content:center;padding:20px;background:radial-gradient(ellipse at top,#3a1613 0,#0d0908 70%)}
 #login[hidden]{display:none}
@@ -64,16 +83,23 @@ label input,label select{text-transform:none;letter-spacing:0}
   <section id="s1">
     <div class="card" style="border-top-left-radius:0">
       <form id="fp">
+        <label class="w">Título de la PD<input name="ti" required placeholder="Ej: Expedición más allá del muro"></label>
         <label>Host<input name="host" required placeholder="Staff host"></label>
         <label>Co-host<input name="co" placeholder="Opcional"></label>
-        <label>Rama / tipo<select name="rama"><option>Cuerpo de Exploración</option><option>Guarnición</option><option>Policía Militar</option><option>SOL (Slice of Life)</option></select></label>
+        <label>Rama / tipo<select name="rama"><option>Cuerpo de Exploración</option><option>Guarnición</option><option>Policía Militar</option><option>SOL (Slice of Life)</option><option>Importante / General</option></select></label>
         <label>Inicio (hora GMT+1)<input type="datetime-local" name="at" required></label>
         <label>Duración (min)<input type="number" name="du" value="60" min="10" step="5" required></label>
-        <label class="w">Notas<input name="nt" placeholder="Contexto, escena, requisitos…"></label>
+        <label class="w">Descripción (opcional)<input name="nt" placeholder="De qué trata la PD, requisitos…"></label>
         <div class="w"><button class="p">Agendar PD</button> <span class="err" id="e1"></span></div>
       </form>
     </div>
     <div class="card"><div class="bar" style="margin:0 0 8px;justify-content:center"><button id="pm">◀</button><b id="mt" style="min-width:150px;text-align:center;text-transform:capitalize"></b><button id="nm">▶</button></div><div class="sc"><div id="cal" class="cal"></div></div><div class="mu" style="margin-top:6px">Toca un día para ver su detalle. Los días se agrupan según GMT+1; las horas, en la zona que elijas arriba.</div></div>
+    <div class="card"><div class="dn"><button id="pd">◀ Día anterior</button><b id="dm"></b><button id="nd">Día siguiente ▶</button></div>
+    <div class="lg"><span><i style="background:#2f6fd0"></i>Cuerpo de Exploración</span><span><i style="background:#c0392b"></i>Guarnición</span><span><i style="background:#2e8b57"></i>Policía Militar</span><span><i style="background:#7a7f86"></i>SOL</span><span><i style="background:#e0b020"></i>Importante / General</span></div>
+    <div class="mu" style="margin-bottom:6px">Disponibilidad por hora · toca una hora libre para agendar ahí</div>
+    <div class="hrs" id="hrs"></div>
+    <div class="tlw" id="tlw"><div class="tl" id="tl"></div></div>
+    <div class="mu" style="margin-top:6px">Las horas del eje se muestran en la zona que elijas arriba. El día corresponde a GMT+1.</div></div>
     <div class="stats" id="st1"></div>
     <div class="card" style="margin-top:12px"><div class="bar" style="margin:0 0 6px"><b>PDs del día</b></div><div id="l1"></div></div>
   </section>
@@ -156,6 +182,45 @@ const sh=d=>{const[y,m]=cm.split("-").map(Number);return new Date(Date.UTC(y,m-1
 $("#pm").onclick=()=>{cm=sh(-1);render()};$("#nm").onclick=()=>{cm=sh(1);render()};
 window.pick=k=>{$("#day").value=k;cm=k.slice(0,7);render()};
 $("#day").onchange=()=>{cm=$("#day").value.slice(0,7);render()};$("#today").onclick=()=>{$("#day").value=dk(Date.now());cm=$("#day").value.slice(0,7);render()};
+const COL={"Cuerpo de Exploración":"#2f6fd0","Guarnición":"#c0392b","Policía Militar":"#2e8b57","SOL (Slice of Life)":"#7a7f86","Importante / General":"#e0b020"},TXT={"Importante / General":"#1a1405"},HH=48;
+let lastDay="";
+window.fillH=i=>{$("#fp").elements.at.value=`${$("#day").value}T${String(i).padStart(2,"0")}:00`;$("#fp").scrollIntoView({behavior:"smooth",block:"center"});$("#fp").elements.host.focus()};
+const sd=d=>pick(new Date(Date.parse($("#day").value+"T12:00:00Z")+d*864e5).toISOString().slice(0,10));
+$("#pd").onclick=()=>sd(-1);$("#nd").onclick=()=>sd(1);
+function dayR(){
+ const k=$("#day").value,ds=Date.parse(k+"T00:00:00+01:00");if(!ds)return;
+ const l=data.pds.filter(p=>p.status!=="Cancelada"&&p.start<ds+24*H&&p.start+p.dur>ds);
+ $("#dm").textContent=new Intl.DateTimeFormat("es",{timeZone:"Etc/GMT-1",weekday:"long",day:"numeric",month:"long",year:"numeric"}).format(ds);
+ let h="";for(let i=0;i<24;i++)h+=`<div class="g" style="top:${i*HH}px"><span>${fT(ds+i*H)}</span></div>`;
+ h+=l.map(p=>{const a=Math.max(p.start,ds),b=Math.min(p.start+p.dur,ds+24*H);
+  return `<div class="blk" style="top:${(a-ds)/H*HH}px;height:${Math.max((b-a)/H*HH,22)}px;background:${COL[p.rama]||"#7a7f86"};color:${TXT[p.rama]||"#fff"}"><b>${esc(p.ti||p.rama)}</b>${p.status==="Hecha"?" ✔":""}<br>${fT(p.start)}–${fT(p.start+p.dur)} · ${esc(p.rama)}<br>Host: ${esc(p.host)}${p.co?" · Co-host: "+esc(p.co):""}${p.tp?" · ★ "+p.tp+" TP":""}</div>`}).join("");
+$("#tl").innerHTML=h;
+ let c="";
+ for(let i=0;i<24;i++){const a=ds+i*H,b=a+H;
+  const o=l.filter(p=>p.start<b&&p.start+p.dur>a).sort((x,y)=>x.start-y.start);
+  const m=Math.round(o.reduce((t,p)=>t+Math.min(p.start+p.dur,b)-Math.max(p.start,a),0)/60000);
+  const lb=`<b>${fT(a)}</b><span>${fT(a,"Etc/GMT-1")} GMT+1</span><br>`;
+  c+=o.length?`<div class="hc o" style="background:${COL[o[0].rama]||"#7a7f86"};color:${TXT[o[0].rama]||"#fff"}">${lb}${m>=60?"Ocupado":"Parcial · "+m+" min"} · ${esc(o[0].host)}</div>`:`<div class="hc" onclick="fillH(${i})" title="Agendar aquí">${lb}Libre</div>`;
+ }
+ $("#hrs").innerHTML=c;
+ if(lastDay!==k){lastDay=k;$("#tlw").scrollTop=l.length?Math.max(0,(Math.min(...l.map(p=>p.start))-ds)/H*HH-30):HH*16}
+}
+function pdCard(p){
+ const c=COL[p.rama]||"#7a7f86",tx=TXT[p.rama]||"#fff";
+ return `<div class="pdc" style="--c:${c}">
+  <div class="ph"><span class="rb" style="background:${c};color:${tx}">${esc(p.rama)}</span>
+   <span class="tm">${fT(p.start)}–${fT(p.start+p.dur)} <small>${fT(p.start,"Etc/GMT-1")} GMT+1 · ${Math.round(p.dur/60000)} min</small></span>
+   <span class="ac"><select onchange="setS('${p.id}',this.value)">${["Programada","Hecha","Cancelada"].map(x=>`<option${x===p.status?" selected":""}>${x}</option>`).join("")}</select><button onclick="delP('${p.id}')" title="Eliminar">🗑</button></span></div>
+  <h3 class="s-${p.status}">${esc(p.ti||"PD sin título")}</h3>
+  <div class="pm"><span>Host <b>${esc(p.host)}</b></span>${p.co?`<span>Co-host <b>${esc(p.co)}</b></span>`:""}</div>
+  ${p.nt?`<p class="pdsc">${esc(p.nt)}</p>`:""}
+  <div class="pf"><label>Talent points<input type="number" min="0" id="tp_${p.id}" value="${esc(p.tp??"")}" placeholder="0"></label>
+   <label>Notas para follow-up<textarea id="fu_${p.id}" rows="2" placeholder="Pendientes, seguimiento…">${esc(p.fu)}</textarea></label>
+   <button onclick="saveF('${p.id}')">Guardar</button></div>
+ </div>`}
+window.saveF=id=>{const p=data.pds.find(x=>x.id===id);if(!p)return;const v=$("#tp_"+id).value;
+ stores.pds.set(id,{...p,tp:v===""?null:+v,fu:$("#fu_"+id).value});
+ const t=$("#sync"),o=t.textContent;t.textContent="✔ Guardado";setTimeout(()=>{if(t.textContent==="✔ Guardado")t.textContent=o},1500)};
 function calR(){
  const[y,m]=cm.split("-").map(Number);
  $("#mt").textContent=new Intl.DateTimeFormat("es",{timeZone:"UTC",month:"long",year:"numeric"}).format(Date.UTC(y,m-1,1));
@@ -164,7 +229,7 @@ function calR(){
  for(let i=0;i<off;i++)h+="<div></div>";
  for(let d=1;d<=n;d++){const k=`${cm}-${String(d).padStart(2,"0")}`;
   const l=data.pds.filter(p=>dk(p.start)===k&&p.status!=="Cancelada").sort((a,b)=>a.start-b.start);
-  h+=`<div class="d${k===$("#day").value?" sel":""}${k===dk(Date.now())?" td":""}" onclick="pick('${k}')"><b>${d}</b>${l.slice(0,3).map(p=>`<i>${fT(p.start)} ${esc(String(p.rama||"").split(" ")[0])}</i>`).join("")}${l.length>3?`<i>+${l.length-3} más</i>`:""}</div>`}
+  h+=`<div class="d${k===$("#day").value?" sel":""}${k===dk(Date.now())?" td":""}" onclick="pick('${k}')"><b>${d}</b>${l.slice(0,3).map(p=>`<i style="border-left:3px solid ${COL[p.rama]||"#7a7f86"};padding-left:3px">${fT(p.start)} ${esc(String(p.rama||"").split(" ")[0])}</i>`).join("")}${l.length>3?`<i>+${l.length-3} más</i>`:""}</div>`}
  $("#cal").innerHTML=h;
 }
 
@@ -173,10 +238,10 @@ $("#fp").onsubmit=async e=>{
   e.preventDefault();const f=Object.fromEntries(new FormData(e.target));
   const s=Date.parse(f.at+":00+01:00"),d=+f.du*60000,en=s+d;
   const c=data.pds.find(p=>p.status!=="Cancelada"&&s<p.start+p.dur&&p.start<en);
-  if(c){$("#e1").textContent=`⛔ Se cruza con la PD de ${c.host} — ${c.rama} (${fT(c.start,"Etc/GMT-1")}–${fT(c.start+c.dur,"Etc/GMT-1")} GMT+1)`;return}
+  if(c){$("#e1").textContent=`⛔ Se cruza con "${c.ti||c.rama}" de ${c.host} — ${c.rama} (${fT(c.start,"Etc/GMT-1")}–${fT(c.start+c.dur,"Etc/GMT-1")} GMT+1)`;return}
   $("#e1").textContent="";
-  await stores.pds.set(uid(),{host:f.host,co:f.co,rama:f.rama,start:s,dur:d,nt:f.nt,status:"Programada"});
-  e.target.host.value=e.target.co.value=e.target.nt.value="";
+  await stores.pds.set(uid(),{ti:f.ti,host:f.host,co:f.co,rama:f.rama,start:s,dur:d,nt:f.nt,status:"Programada"});
+  e.target.ti.value=e.target.host.value=e.target.co.value=e.target.nt.value="";
 };
 window.setS=(id,v)=>{const p=data.pds.find(x=>x.id===id);stores.pds.set(id,{...p,status:v})};
 window.delP=id=>confirm("¿Eliminar esta PD?")&&stores.pds.del(id);
@@ -190,12 +255,11 @@ window.setT=(id,v)=>{const t=data.tickets.find(x=>x.id===id);stores.tickets.set(
 window.delT=id=>confirm("¿Eliminar ticket?")&&stores.tickets.del(id);
 
 function render(){
-  calR();
+  calR();dayR();
   const l=dayPds(),ds=$("#day").value;
-  $("#st1").innerHTML=["Programada","Hecha","Cancelada"].map(s=>`<div><b>${l.filter(p=>p.status===s).length}</b>${s}s</div>`).join("");
-  $("#l1").innerHTML=l.map(p=>`<div class="row"><div><span class="t">${fT(p.start)}–${fT(p.start+p.dur)}</span> <span class="mu">${fT(p.start,"Etc/GMT-1")} GMT+1</span></div>
-  <div style="flex:1;min-width:160px"><b class="s-${p.status}">${esc(p.rama)}</b> <span class="mu">Host: ${esc(p.host)}${p.co?" · Co-host: "+esc(p.co):""}</span><div class="mu">${esc(p.nt)}</div></div>
-  <div><select onchange="setS('${p.id}',this.value)">${["Programada","Hecha","Cancelada"].map(s=>`<option${s===p.status?" selected":""}>${s}</option>`).join("")}</select> <button onclick="delP('${p.id}')">🗑</button></div></div>`).join("")||'<div class="mu">No hay PDs agendadas este día.</div>';
+  $("#st1").innerHTML=["Programada","Hecha","Cancelada"].map(s=>`<div><b>${l.filter(p=>p.status===s).length}</b>${s}s</div>`).join("")+`<div><b>${l.reduce((t,p)=>t+(+p.tp||0),0)}</b>Talent points</div>`;
+  const ae=document.activeElement;
+  if(!(ae&&/INPUT|TEXTAREA/.test(ae.tagName)&&ae.closest("#l1")))$("#l1").innerHTML=l.map(pdCard).join("")||'<div class="mu">No hay PDs agendadas este día.</div>';
   const T=[...data.tickets].sort((a,b)=>b.at-a.at),hoy=T.filter(t=>dk(t.at)===dk(Date.now()));
   const by={};T.forEach(t=>by[t.st]=(by[t.st]||0)+1);
   $("#st2").innerHTML=`<div><b>${hoy.length}</b>Hoy</div><div><b>${T.length}</b>Total</div><div><b>${T.filter(t=>t.es==="Pendiente").length}</b>Pendientes</div>`+Object.entries(by).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([k,v])=>`<div><b>${v}</b>${esc(k)}</div>`).join("");
